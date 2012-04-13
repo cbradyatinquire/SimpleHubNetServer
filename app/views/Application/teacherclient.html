@@ -10,8 +10,10 @@ Teacher client for ${modelname}
 	codebase="@{'/public/netlogo/teacher/'}"
         archive="@{'/public/netlogo/teacher/HubNet.jar'}"
         width="707" height="670">
-        <param name="DefaultModel" value="Disease-ALT.nlogo">
-        <param name="PortNumber" value="${port}">
+        <param name="DefaultModel" value="${modelname}">
+         <param name="PortNumber" value="${port}">
+        <param name="UserName" value="${teachername}">
+        
 </applet>
 </p>
 

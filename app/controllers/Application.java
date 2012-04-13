@@ -52,14 +52,19 @@ public class Application extends Controller {
     }
     
     public static void student() {
-    	//here get the teachers from the database that have active sessions
+    	//get the teachers from the database and determine which have active sessions
+    	List<Teacher> teachers = Teacher.findAll();
     	ArrayList<String>activeteachers = new ArrayList<String>();
-    	activeteachers.add("Uri");
-    	activeteachers.add("Corey");
-    	//here get the teachers from the database that DO NOT have active sessions
     	ArrayList<String>inactiveteachers = new ArrayList<String>();
-    	activeteachers.add("Paulo");
-    	activeteachers.add("Pratim");
+    	
+    	for (Teacher t : teachers)
+    	{
+    		if ( teacherToPort.containsKey(t.username) )
+    			activeteachers.add( t.username );
+    		else
+    			inactiveteachers.add(t.username);
+    	}
+    	
     	render(activeteachers, inactiveteachers );
     }
     
@@ -80,6 +85,14 @@ public class Application extends Controller {
     {
     	//authenticate the teacher; get back their real name
     	//if there is a session for this teacher, kill it.
+    	
+    	Teacher t = Teacher.connect(uname, pass);
+    	if (t == null)
+    	{
+    		flash.error("Login Failed");
+    		teacher();
+    	}
+    
     	String teacherhandle = uname;  //will be the return.
     	
     	if ( teacherToPort.containsKey(teacherhandle) )
@@ -96,11 +109,9 @@ public class Application extends Controller {
 		}
     	
     	Integer portToUse = getNextOpenPort();
-    	//change to  use  this argument :)
-    	final String args[] = { modelname, portToUse.toString() };
+    	
     	ServerSwitch switcher = new ServerSwitch();
-    	//Thread nthread =  new Thread( new Runnable() { public void run() {RunHeadless.main(args); } });
-    	//nthread.start();
+    	
     	RunHeadless rh = new RunHeadless( modelname, portToUse, switcher );
     	teacherToPort.put(teacherhandle, portToUse);
     	portToServerSwitch.put(portToUse, switcher);
