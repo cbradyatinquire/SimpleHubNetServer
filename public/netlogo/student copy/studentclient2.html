@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>Student Client</title>
+
+</head>
+<body>
+
+
+<p>
+
+
+<script language="Javascript">
+
+  var _app = navigator.appName;
+
+  if (_app == 'Netscape') {
+    document.write('<embed code="org.nlogo.hubnet.client.ClientApplet"',
+                   'width="682"',
+                   'height="546"',
+                   'archive="HubNet.jar"',
+                   'type="application/x-java-applet;version=1.6.0">');
+    }
+  else if (_app == 'Microsoft Internet Explorer') {
+    document.write('<OBJECT ',
+                   'classid="clsid:CAFEEFAC-0016-0000-0000-ABCDEFFEDCBA"',
+                   'width="682"',
+                   'height="546">',
+                   '<PARAM name="code" value="org.nlogo.hubnet.client.ClientApplet">',
+                   '<PARAM name="archive" value="HubNet.jar">',
+                   '</OBJECT>');
+    }
+  else {
+    document.write('<p>Sorry, unsupported browser.</p>');
+    }
+
+</script>
+
+
+</p>
+
+<p>powered by <a target="_blank" href="http://ccl.northwestern.edu/netlogo/">NetLogo</a></p>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+#{extends 'main.html' /}
+#{set title:'Teacher Client' /}
+
+Welcome, ${teachername}<br>
+Teacher client for ${modelname}
+
+<p>
+<applet id="teach" name="hubnetteacher" 
+	code="org.nlogo.hubnet.client.ClientApplet"
+	codebase="@{'/public/netlogo/teacher/'}"
+        archive="@{'/public/netlogo/teacher/HubNet.jar'}"
+        width="707" height="670">
+        <param name="DefaultModel" value="Disease-ALT.nlogo">
+        <param name="PortNumber" value="${port}">
+</applet>
+</p>
+
+
+

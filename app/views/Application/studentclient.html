@@ -1,0 +1,20 @@
+#{extends 'main.html' /}
+#{set title:'Student Client' /}
+Student client for ${model}
+Welcome, ${studentname}<br>
+You are in ${teachername}'s class, working on port ${port}.
+
+
+
+<p>
+<applet id="stud" name="hubnetstudent" 
+	code="org.nlogo.hubnet.client.ClientApplet"
+	codebase="@{'/public/netlogo/student/'}"
+        archive="@{'/public/netlogo/student/HubNet.jar'}"
+        width="1000" height="900">
+        <param name="PortNumber" value="${port}">
+</applet>
+</p>
+
+
+

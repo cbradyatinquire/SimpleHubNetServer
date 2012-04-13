@@ -1,0 +1,7 @@
+Play-based web application for running a simple HubNet server,
+using the hubnet client applet that optionally overrides client 
+specs to give the teacher a unique interface. 
+
+(and/or to support multiple student roles in an activity)
+
+

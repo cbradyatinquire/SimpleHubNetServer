@@ -1,0 +1,28 @@
+#{extends 'main.html' /}
+#{set title:'Teacher Sign-in Page' /}
+
+#{if flash.error}
+    <p style="color:#c00">
+        ${flash.error}
+    </p>
+#{/if}
+
+
+
+<p>
+<h2>Login as teacher: </h2>
+
+<form action="@{Application.teacherLogin()}" method="POST">
+    Username: <input type="text" name="uname" /> <br>
+    Password: <input type="password" name="pass"><br>
+    <br>
+    Choose a Model to Launch: <br>
+    #{list items:models, as:'model'}
+    <input type="radio" name="modelname" value='${model}'/>${model}<br>
+    #{/list}
+    <br>
+    <br> <input type="submit" value="Log In" />
+</form>
+
+
+

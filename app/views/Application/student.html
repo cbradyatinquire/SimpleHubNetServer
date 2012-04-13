@@ -1,0 +1,34 @@
+#{extends 'main.html' /}
+#{set title:'Student Sign-in Page' /}
+
+#{if flash.error}
+    <p style="color:#c00">
+        ${flash.error}
+    </p>
+#{/if}
+
+
+
+<p>
+<h1>Login as student: </h1>
+
+
+<form action="@{Application.studentLogin()}" method="POST">
+    Your Username: <input type="text" name="studentname" /> <br>
+    <br>
+    Choose your Teacher: <br>
+    #{list items:activeteachers, as:'ateacher'}
+    <input type="radio" name="teachername" value='${ateacher}'/> ${ateacher}<br>
+    #{/list}
+    <br> <input type="submit" value="Log In" />
+</form>
+<br>
+
+<h4>NOTE: if your teacher's name is in the list below, they have not started a simulation.<br>
+Wait until your teacher signs in and then refresh this page...</h4>
+Teachers with no simulation started:
+<ul>
+ #{list items:inactiveteachers, as:'iteacher'}
+    <li>${iteacher}</li>
+    #{/list}
+</ul>
