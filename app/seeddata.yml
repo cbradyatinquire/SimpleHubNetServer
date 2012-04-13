@@ -1,0 +1,18 @@
+# Test data
+  
+Teacher(cb):
+    username:  Corey
+    password:  asdf
+    
+Teacher(uw):
+    username:  Uri
+    password:  asdf    
+
+Teacher(pb):
+    username:   Paulo
+    password:   asdf    
+
+Teacher(ps):
+    username:  Pratim
+    password:  asdf    
+        
