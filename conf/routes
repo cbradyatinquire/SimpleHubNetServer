@@ -8,6 +8,9 @@ GET     /                                       Application.index
 GET 	/teacher								Application.teacher
 GET		/student								Application.student
 
+GET 	/shutdown								Application.shutdown
+GET 	/addaccount								Application.accounts
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

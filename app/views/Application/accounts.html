@@ -1,0 +1,28 @@
+#{extends 'main.html' /}
+#{set title:'ABM-PLUS HubNet Starter' /}
+
+#{if flash.error}
+    <p style="color:#c00">
+        ${flash.error}
+    </p>
+#{/if}
+
+
+
+<h2>
+Create a new teacher account:<br>
+</h2>
+<form action="@{Application.addAccount()}" method="POST">
+    <p>
+    Username: <input type="text" name="uname" /> <br>
+    Password: <input type="password" name="pass"><br>
+    </p>
+    <input type="submit" value="Create Account" />
+    <br>
+ </form>
+ <br>
+
+<h4>
+
+Or, go back to the <a href="/">Home Screen</a>.
+</h4>

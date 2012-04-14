@@ -78,7 +78,6 @@ public class Application extends Controller {
     
     private static Integer getNextOpenPort()
     {
-       	
     	portPointer++;
     	//TODO: figure out how to give Headless the port i want it to use.  then change this...
     	ServerSocket s = null;
@@ -104,8 +103,7 @@ public class Application extends Controller {
     }
     
     public static void teacherLogin( @Required String uname, @Required String pass, @Required String modelname )
-    {
-    	
+    {	
     	if(validation.hasErrors()) {
             flash.error("ERROR: Please enter all fields:  Username, Password, and Model");
             teacher();
@@ -122,18 +120,7 @@ public class Application extends Controller {
     
     	String teacherhandle = uname;  //will be the return.
     	
-    	if ( teacherToPort.containsKey(teacherhandle) )
-		{
-			Integer toRemove = teacherToPort.get(teacherhandle);
-			teacherToPort.remove(teacherhandle);
-			try {
-				portToServerSwitch.get(toRemove).setRunning(false);  
-			}
-			catch (Exception e) { 
-				e.printStackTrace();
-			}
-			portToModelName.remove(toRemove);
-		}
+    	shutdownSessionFor(teacherhandle);
     	
     	Integer portToUse = getNextOpenPort();
     	
@@ -146,7 +133,88 @@ public class Application extends Controller {
     	teacherclient( teacherhandle, modelname, portToUse.toString() );
     }
     
-
+    private static void shutdownSessionFor(String teacherhandle)
+    {
+    	if ( teacherToPort.containsKey(teacherhandle) )
+		{
+			Integer toRemove = teacherToPort.get(teacherhandle);
+			teacherToPort.remove(teacherhandle);
+			try {
+				portToServerSwitch.get(toRemove).setRunning(false);  
+			}
+			catch (Exception e) { 
+				e.printStackTrace();
+			}
+			portToModelName.remove(toRemove);
+		}
+    }
+    
+    private static ArrayList<String> getActiveTeachers()
+    {
+    	ArrayList<String> activeteachers = new ArrayList<String>();
+        for (String teach : teacherToPort.keySet() )
+        	activeteachers.add(teach);
+        return activeteachers;
+    }
+    
+    public static void addAccount( @Required String uname, @Required String pass )
+    {
+    	if(validation.hasErrors()) {
+            flash.error("ERROR: Please enter both fields:  Username, Password");
+            accounts();
+        }
+    	List<Teacher> teachers = Teacher.findAll();
+    	String conflict = "";
+    	for (Teacher t : teachers)
+    		if (t.username.equalsIgnoreCase(uname))
+    			conflict = t.username;
+    	if ( conflict.length() == 0 )
+    	{
+    		flash.error("SUCCESS: Teacher account created for " + uname);
+    		Teacher nteach = new Teacher(uname, pass);
+    		nteach.save();
+    	}
+    	else
+    	{
+    		flash.error("ERROR: A teacher username, '" + conflict + "' already exists.  This is too close to '" + uname + "'.  Please try another username.");
+    	}
+    	accounts();
+    }
+    
+    public static void accounts()
+    {
+    	render();
+    }
+    
+    
+    
+    public static void shutdownSession( @Required String teachername, @Required String password )
+    {
+    	if(validation.hasErrors()) {
+            flash.error("ERROR: Please enter all fields:  Username, Password, and Model");
+            shutdown(  );
+        }
+    	Teacher t = Teacher.connect(teachername, password);
+    	if ( t == null )
+    	{
+    		flash.error("ERROR: Authentication Failed");
+            shutdown( );
+    	}
+    	else
+    	{
+    		shutdownSessionFor(teachername);
+    		shutdown( );
+    	}
+    }
+    
+    public static void shutdown(  ) 
+    {
+    	ArrayList activeteachers = getActiveTeachers();
+    	render(activeteachers);
+    }
+    
+    
+    
     public static void teacherclient( String teachername, String modelname, String port)
     {
     	render(teachername, modelname, port);

@@ -1,0 +1,29 @@
+#{extends 'main.html' /}
+#{set title:'ABM-PLUS HubNet Starter' /}
+
+#{if flash.error}
+    <p style="color:#c00">
+        ${flash.error}
+    </p>
+#{/if}
+
+
+<h1>Shut down a class session</h1>
+<h3>
+Choose the teacher session to shut down, and provide the password:
+<form action="@{Application.shutdownSession()}" method="POST">
+#{list items:activeteachers, as:'ateacher'}
+    <input type="radio" name="teachername" value='${ateacher}'/> ${ateacher}<br>
+    #{/list}
+    #{else}
+    <br><b><i>[There are no active class sessions]</i></b><br><br>
+#{/else}
+Teacher Password: <input type="password" name="password"><br>
+<input type="submit" name="submit">
+    </form>
+</h3>
+
+<h4>
+
+Or, go back to the <a href="/">Home Screen</a>.
+</h4>

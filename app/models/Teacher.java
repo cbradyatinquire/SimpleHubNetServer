@@ -14,6 +14,12 @@ public class Teacher extends Model {
 	@Required
 	public String password;
 	
+	public Teacher( String uname, String pass )
+	{
+		username = uname;
+		password = pass;
+	}
+	
 	public static Teacher connect(String uname, String pass) {
 		return find("byUsernameAndPassword", uname, pass).first();
 	}
