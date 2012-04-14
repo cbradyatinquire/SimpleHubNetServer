@@ -9,26 +9,32 @@
 
 
 
-<p>
+
 <h1>Login as student: </h1>
 
 
 <form action="@{Application.studentLogin()}" method="POST">
-    Your Username: <input type="text" name="studentname" /> <br>
-    <br>
-    Choose your Teacher: <br>
+    <p>
+    <b>Your Username:</b><br><input type="text" name="studentname" /> <br>
+  </p><p>
+    <b>Your Teacher: </b><br>
     #{list items:activeteachers, as:'ateacher'}
     <input type="radio" name="teachername" value='${ateacher}'/> ${ateacher}<br>
     #{/list}
-    <br> <input type="submit" value="Log In" />
+    </p><p>
+    <input type="submit" value="Log In" />
+    </p>
 </form>
 <br>
 
-<h4>NOTE: if your teacher's name is in the list below, they have not started a simulation.<br>
-Wait until your teacher signs in and then refresh this page...</h4>
-Teachers with no simulation started:
+
+<h3>NOTE: if your teacher's name is not in the list above, they have not yet started an activity.<br>
+Wait until your teacher signs in and then refresh this page...</h3>
+<h4>
+Teachers with no simulation currently running:
 <ul>
  #{list items:inactiveteachers, as:'iteacher'}
     <li>${iteacher}</li>
     #{/list}
 </ul>
+</h4>

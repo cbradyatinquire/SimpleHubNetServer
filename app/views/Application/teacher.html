@@ -13,15 +13,19 @@
 <h2>Login as teacher: </h2>
 
 <form action="@{Application.teacherLogin()}" method="POST">
+    <p>
     Username: <input type="text" name="uname" /> <br>
     Password: <input type="password" name="pass"><br>
+    </p>
     <br>
-    Choose a Model to Launch: <br>
+    <p><b>Choose a Model to Launch: </b></p>
+    <p>
     #{list items:models, as:'model'}
     <input type="radio" name="modelname" value='${model}'/>${model}<br>
     #{/list}
-    <br>
-    <br> <input type="submit" value="Log In" />
+	</p>    <br> 
+	<input type="submit" value="Log In" />
+
 </form>
 
 
