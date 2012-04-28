@@ -1,0 +1,17 @@
+#{extends 'main.html' /}
+#{set title:'ABM-PLUS HubNet Starter' /}
+
+#{if flash.error}
+    <p style="color:#c00">
+        ${flash.error}
+    </p>
+#{/if}
+
+
+
+
+#{form @addScreenShot(), enctype:'multipart/form-data'}
+	<input type="text" name="sshot.title">
+   <input type="file" name="sshot.scrimage">
+   <input type="submit" name="submit" value="Upload">
+#{/form}

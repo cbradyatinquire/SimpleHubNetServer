@@ -11,6 +11,8 @@ GET		/student								Application.student
 GET 	/shutdown								Application.shutdown
 GET 	/addaccount								Application.accounts
 
+*		/screens								ImageTransfer.shots
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
