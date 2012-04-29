@@ -9,9 +9,26 @@
 
 
 
+#{list items:titles, as:'title'}
+	<img height=400 width=600 src="/getimage?title=${title}"/>
+    <br>${title}</br>
+    #{/list}
+
+
 
 #{form @addScreenShot(), enctype:'multipart/form-data'}
 	<input type="text" name="sshot.title">
    <input type="file" name="sshot.scrimage">
    <input type="submit" name="submit" value="Upload">
 #{/form}
+
+
+
+    
+    #{list items:titles, as:'title'}
+	<iframe height=500 width=900 src="/getimage?title=${title}"></iframe>
+    <br>${title}</br>
+    #{/list}
+
+
+    

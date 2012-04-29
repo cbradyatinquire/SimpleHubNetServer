@@ -12,6 +12,9 @@ GET 	/shutdown								Application.shutdown
 GET 	/addaccount								Application.accounts
 
 *		/screens								ImageTransfer.shots
+POST	/viewscreen								ImageTransfer.addViewScreen
+*		/getimage								ImageTransfer.getImageByTitle
+*		/run									ImageTransfer.activity
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
