@@ -2,12 +2,15 @@ extensions [ url bitmap ]
 
 
 to upload
+  let img bitmap:from-view
+  let  im-name (word "con-titulo-" su-nombre index ".png")
+  set index index + 1
   carefully [
   let status url:post 
                  (word "http://localhost:9000/viewscreen" ) 
                  (list         ;(list "sshot.title" title) 
-                (list "sshot.scrimage"  (word "con-titulo-" título ".png")  bitmap:from-view)
-                (list "aname" título) 
+                (list "sshot.scrimage"  im-name  img)
+                (list "aname" (word su-nombre index)  ) 
                 )
                  
   output-print status
@@ -18,9 +21,9 @@ end
 @#$#@#$#@
 GRAPHICS-WINDOW
 475
-10
+75
 1028
-584
+649
 11
 11
 23.61
@@ -44,10 +47,10 @@ ticks
 30.0
 
 BUTTON
-820
-665
-1025
-698
+775
+10
+905
+70
 SUBIR / COMPARTIR
 upload
 NIL
@@ -61,28 +64,28 @@ NIL
 1
 
 INPUTBOX
-820
-600
-1025
-660
-título
-Dibujo-De-
+475
+10
+770
+70
+su-nombre
+Nombre
 1
 0
 String
 
 OUTPUT
-125
-600
-610
-695
+705
+825
+1020
+905
 12
 
 BUTTON
 135
-140
+205
 210
-175
+240
 adelante
 ifelse (modo = \"directo\")\n[ ask turtles [ fd pasos-ir ]  ]\n[set para-tortugas (word para-tortugas \"forward \" pasos-ir \"\\n\" )]
 NIL
@@ -96,10 +99,10 @@ NIL
 1
 
 INPUTBOX
-125
-700
-610
-760
+210
+825
+620
+905
 comando
 NIL
 1
@@ -107,12 +110,12 @@ NIL
 String (commands)
 
 BUTTON
-615
-700
-682
-760
+625
+855
+692
+905
 correr
-ifelse (para-quien = \"observer\")\n[ run comando ]\n[ let agnts run-result para-quien \n  ask agnts [ run comando ]\n]\noutput-print comando\nset comando \"\"
+ifelse (para-quien = \"observer\")\n[ \n  \n  run comando \n]\n[ let agnts run-result para-quien \n  ask agnts [ run comando ]\n]\noutput-print comando\nset comando \"\"
 NIL
 1
 T
@@ -124,10 +127,10 @@ NIL
 1
 
 CHOOSER
-21
-711
-118
-756
+110
+825
+207
+870
 para-quien
 para-quien
 "observer" "turtles" "patches" "links"
@@ -135,9 +138,9 @@ para-quien
 
 INPUTBOX
 10
-230
+295
 180
-465
+530
 para-tortugas
 NIL
 1
@@ -146,9 +149,9 @@ String (commands)
 
 BUTTON
 135
-182
+247
 210
-215
+280
 atras
 ifelse (modo = \"directo\")\n[ ask turtles [ bk pasos-ir ]  ]\n[set para-tortugas (word para-tortugas \"back \" pasos-ir \"\\n\" )]
 NIL
@@ -163,20 +166,20 @@ NIL
 
 INPUTBOX
 215
-140
+205
 275
-215
+280
 pasos-ir
-4
+5
 1
 0
 Number
 
 BUTTON
 285
-140
+205
 380
-173
+238
 girar-izquierda
 ifelse (modo = \"directo\")\n[ ask turtles [ lt grados-girar ]  ]\n[set para-tortugas (word para-tortugas \"left \" grados-girar \"\\n\" )]
 NIL
@@ -191,9 +194,9 @@ NIL
 
 INPUTBOX
 385
-140
+205
 465
-211
+276
 grados-girar
 90
 1
@@ -202,9 +205,9 @@ Number
 
 BUTTON
 285
-180
+245
 380
-213
+278
 girar-derecha
 ifelse (modo = \"directo\")\n[ ask turtles [ rt grados-girar ]  ]\n[set para-tortugas (word para-tortugas \"right \" grados-girar \"\\n\" )]
 NIL
@@ -219,9 +222,9 @@ NIL
 
 BUTTON
 10
-510
+575
 180
-543
+608
 borrar comandos
 set para-tortugas \"\"
 NIL
@@ -236,9 +239,9 @@ NIL
 
 BUTTON
 10
-470
+535
 180
-503
+568
 mandar tortugas
 ask turtles [ run para-tortugas ]
 NIL
@@ -253,9 +256,9 @@ NIL
 
 BUTTON
 180
-95
+160
 275
-128
+193
 poner lapiz
 ifelse (modo = \"directo\")\n[ ask turtles [ pd ]  ]\n[ set para-tortugas (word para-tortugas \"pen-down \" \"\\n\" ) ]
 NIL
@@ -270,9 +273,9 @@ NIL
 
 BUTTON
 285
-95
+160
 380
-128
+193
 sacar lapiz
 ifelse (modo = \"directo\")\n[ ask turtles [ pu ]  ]\n[set para-tortugas (word para-tortugas \"pen-up \" \"\\n\" )]
 NIL
@@ -287,9 +290,9 @@ NIL
 
 INPUTBOX
 225
-230
+295
 460
-465
+530
 mi-procedimiento
 pen-down \nforward 4\nleft 90\nforward 4\nleft 90\nforward 4\nleft 90\nforward 4\nleft 90\npen-up \n
 1
@@ -298,9 +301,9 @@ String (commands)
 
 BUTTON
 225
-470
+535
 460
-503
+568
 que las tortugas lo hagan (una vez)
 ask turtles [ run mi-procedimiento ]
 NIL
@@ -315,9 +318,9 @@ NIL
 
 BUTTON
 225
-550
+615
 460
-583
+648
 que lo hagan continuamente
 every .5\n[\nask turtles [ run mi-procedimiento ]\n]
 T
@@ -332,9 +335,9 @@ NIL
 
 BUTTON
 225
-510
+575
 325
-543
+608
 que lo repitan 
 repeat veces\n[\n ask turtles [ run mi-procedimiento ]\n]
 NIL
@@ -349,9 +352,9 @@ NIL
 
 SLIDER
 330
-510
+575
 460
-543
+608
 veces
 veces
 2
@@ -364,9 +367,9 @@ HORIZONTAL
 
 BUTTON
 10
-550
+615
 180
-583
+648
 mover a 'mi-procedimiento'
 set mi-procedimiento para-tortugas\nset para-tortugas \"\"
 NIL
@@ -381,19 +384,19 @@ NIL
 
 TEXTBOX
 60
-75
+125
 455
-93
+143
 _______________________________________________________________
 11
 14.0
 1
 
 BUTTON
-80
-30
-182
-63
+60
+50
+162
+110
 borrar todo
 ca
 NIL
@@ -408,9 +411,9 @@ NIL
 
 BUTTON
 230
-10
-292
-43
+50
+300
+110
 crear
 create-turtles número
 NIL
@@ -425,9 +428,9 @@ NIL
 
 INPUTBOX
 305
-10
+50
 370
-70
+110
 número
 1
 1
@@ -436,9 +439,9 @@ Number
 
 TEXTBOX
 375
-40
+80
 440
-60
+100
 tortuga(s)
 13
 14.0
@@ -446,9 +449,9 @@ tortuga(s)
 
 TEXTBOX
 10
-10
+15
 75
-36
+41
 INICIAR:
 16
 104.0
@@ -456,23 +459,163 @@ INICIAR:
 
 TEXTBOX
 10
-105
-90
-125
-DIBUJAR:
+160
+110
+178
+TORTUGAS:
 16
 104.0
 1
 
 CHOOSER
 10
-125
+190
 120
-170
+235
 modo
 modo
 "directo" "procedimiento"
+0
+
+TEXTBOX
+65
+655
+480
+673
+_______________________________________________________________
+11
+14.0
 1
+
+BUTTON
+790
+680
+880
+740
+...ahora!
+ask patches with [(run-result ( word arg1 op arg2 ) )]\n[ set pcolor color-nuevo ]
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+CHOOSER
+285
+695
+377
+740
+arg1
+arg1
+"pxcor" "pycor"
+1
+
+CHOOSER
+380
+695
+472
+740
+op
+op
+" < " " = " " > "
+0
+
+INPUTBOX
+475
+680
+540
+740
+arg2
+2
+1
+0
+String (reporter)
+
+TEXTBOX
+155
+685
+280
+735
+Parcelas que cumplen con la condición que su...
+13
+0.0
+1
+
+TEXTBOX
+555
+690
+615
+740
+deben cambiar al color...
+13
+0.0
+1
+
+INPUTBOX
+625
+680
+777
+740
+color-nuevo
+105
+1
+0
+Color
+
+TEXTBOX
+640
+830
+705
+848
+historial ->
+11
+0.0
+1
+
+TEXTBOX
+65
+760
+480
+780
+_______________________________________________________________
+11
+14.0
+1
+
+TEXTBOX
+15
+685
+105
+703
+PARCELAS:
+16
+104.0
+1
+
+TEXTBOX
+15
+790
+110
+808
+AVANZADO:
+16
+104.0
+1
+
+INPUTBOX
+930
+10
+1025
+70
+index
+1
+1
+0
+Number
 
 @#$#@#$#@
 ## WHAT IS IT?

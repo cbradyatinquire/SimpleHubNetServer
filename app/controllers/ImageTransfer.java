@@ -25,11 +25,11 @@ public class ImageTransfer extends Controller {
 	
 	
 	public static void addViewScreen(  ScreenShot sshot, String aname ) {
-		
+		//System.err.println("received " + aname);
 		sshot.title=aname;
 		sshot.name = sshot.scrimage.getFile().getName();
 		sshot.save();
-		renderJSON("RECEIEVED"+sshot.title);
+		renderJSON("Enviado: "+sshot.title);
 	}
 
 	public static void getImageByTitle( String title )

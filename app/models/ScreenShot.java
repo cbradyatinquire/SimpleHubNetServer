@@ -21,7 +21,7 @@ public class ScreenShot extends Model {
 	
 	public static List<ScreenShot>getAll()
 	{
-		return  ScreenShot.all().fetch();	
+		return  ScreenShot.find("order by title desc").fetch();	
 	}
 	
 	
