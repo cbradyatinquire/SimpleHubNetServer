@@ -7,7 +7,7 @@ to upload
   set index index + 1
   carefully [
   let status url:post 
-                 (word "/viewscreen" ) 
+                 (word "http://abmplus.tech.northwestern.edu:9000/viewscreen" ) 
                  (list         ;(list "sshot.title" title) 
                 (list "sshot.scrimage"  im-name  img)
                 (list "aname" (word su-nombre index)  ) 
