@@ -5,7 +5,7 @@ extensions [ url bitmap ]
 to upload
   let img bitmap:from-view
   let  im-name (word "con-titulo-" su-nombre index ".png")
-  set index index + 1
+  
   carefully [
   let status url:post 
                  (word "http://" hostname ":9000/viewscreen" ) 
@@ -13,8 +13,9 @@ to upload
                 (list "sshot.scrimage"  im-name  img)
                 (list "aname" (word su-nombre index)  ) 
                 )
-                 
+             
   output-print status
+  set index index + 1    
 ]
 [ user-message "¡UPS: Problema con la base de datos!" ]  
   
@@ -562,7 +563,7 @@ INPUTBOX
 777
 740
 color-nuevo
-104
+105
 1
 0
 Color
