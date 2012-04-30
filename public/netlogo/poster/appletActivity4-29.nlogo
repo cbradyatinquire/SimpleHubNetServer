@@ -1,13 +1,14 @@
 extensions [ url bitmap ]
 
 
+
 to upload
   let img bitmap:from-view
   let  im-name (word "con-titulo-" su-nombre index ".png")
   set index index + 1
   carefully [
   let status url:post 
-                 (word "http://abmplus.tech.northwestern.edu:9000/viewscreen" ) 
+                 (word "http://" hostname ":9000/viewscreen" ) 
                  (list         ;(list "sshot.title" title) 
                 (list "sshot.scrimage"  im-name  img)
                 (list "aname" (word su-nombre index)  ) 
@@ -66,10 +67,10 @@ NIL
 INPUTBOX
 475
 10
-770
+675
 70
 su-nombre
-Nombre
+Anónimo
 1
 0
 String
@@ -616,6 +617,28 @@ index
 1
 0
 Number
+
+INPUTBOX
+710
+930
+945
+990
+hostname
+abmplus.tech.northwestern.edu
+1
+0
+String
+
+MONITOR
+680
+25
+770
+71
+nombre
+su-nombre
+17
+1
+12
 
 @#$#@#$#@
 ## WHAT IS IT?
