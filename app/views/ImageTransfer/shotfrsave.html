@@ -1,0 +1,27 @@
+#{extends 'main.html' /}
+#{set title:'Capturas de Pantalla' /}
+
+#{if flash.error}
+    <p style="color:#c00">
+        ${flash.error}
+    </p>
+#{/if}
+
+
+
+
+#{list items:allss, as:'shot'}
+
+%{
+	touse = ""
+	if ( ${shot.curl} != lasturl )
+	{
+		touse = "<hr><br>"
+	}
+	lasturl = ${shot.curl};
+}%
+	${touse}
+	 <img height=400 width=400 alt="${shot.title}" title="${shot.title}" src="/getimage?title=${shot.title}"/> 
+  
+    #{/list}
+

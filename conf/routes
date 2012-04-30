@@ -12,6 +12,8 @@ GET 	/shutdown								Application.shutdown
 GET 	/addaccount								Application.accounts
 
 *		/screens								ImageTransfer.shots
+* 		/capturas								ImageTransfer.shotframes
+*		/urlshots								ImageTransfer.getShotsForURL
 POST	/viewscreen								ImageTransfer.addViewScreen
 *		/getimage								ImageTransfer.getImageByTitle
 *		/run									ImageTransfer.activity

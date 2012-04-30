@@ -26,6 +26,8 @@ public class ImageTransfer extends Controller {
 	
 	public static void addViewScreen(  ScreenShot sshot, String aname ) {
 		//System.err.println("received " + aname);
+		String addr =  request.remoteAddress ;
+		sshot.curl = addr;
 		sshot.title=aname;
 		sshot.name = sshot.scrimage.getFile().getName();
 		sshot.save();
@@ -38,6 +40,32 @@ public class ImageTransfer extends Controller {
 		   response.setContentTypeIfNotSet(screen.scrimage.type());
 		   java.io.InputStream binaryData = screen.scrimage.get();
 		   renderBinary(binaryData);
+	}
+	
+	public static void shotframes()
+	{
+		List<ScreenShot> allss = ScreenShot.getAll(); 
+		ArrayList<String>urls = new ArrayList<String>();
+		for ( ScreenShot s : allss )
+		{
+			if ( !urls.contains( s.curl ) )
+				urls.add( s.curl );
+		}
+		
+		if ( urls.size() > 0 )
+		{
+			render( urls );
+		}
+		else
+		{
+			render();
+		}
+	}
+	
+	public static void getShotsForURL( String theurl )
+	{
+		List<ScreenShot> shots = ScreenShot.getShotsForURL( theurl );
+		render( shots );
 	}
 	
 	

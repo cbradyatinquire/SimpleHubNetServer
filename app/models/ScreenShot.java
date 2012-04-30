@@ -1,6 +1,7 @@
 package models;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ public class ScreenShot extends Model {
 	public String title;
 	public String name;
 	public Blob scrimage; 
+	public String curl;
 	
 	
 	
@@ -24,6 +26,17 @@ public class ScreenShot extends Model {
 		return  ScreenShot.find("order by title desc").fetch();	
 	}
 	
+	public static List<ScreenShot>getShotsForURL( String turl )
+	{
+		List<ScreenShot> all = ScreenShot.find("order by title desc").fetch();
+		ArrayList<ScreenShot> tosend = new ArrayList<ScreenShot>();
+		for (ScreenShot s : all )
+		{
+			if ( turl.equals(s.curl) )
+				tosend.add( s );
+		}
+		return tosend;
+	}
 	
 	public static ScreenShot findByTitle( String atitle)
 	{
