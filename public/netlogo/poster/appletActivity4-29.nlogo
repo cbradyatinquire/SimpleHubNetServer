@@ -70,7 +70,7 @@ INPUTBOX
 675
 70
 su-nombre
-Anónimo
+sin nombre
 1
 0
 String
@@ -631,9 +631,9 @@ String
 
 MONITOR
 680
-25
+20
 770
-74
+69
 nombre
 su-nombre
 17
