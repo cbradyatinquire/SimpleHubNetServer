@@ -171,7 +171,7 @@ INPUTBOX
 275
 280
 pasos-ir
-5
+4
 1
 0
 Number
