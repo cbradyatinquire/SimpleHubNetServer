@@ -562,7 +562,7 @@ INPUTBOX
 777
 740
 color-nuevo
-105
+104
 1
 0
 Color
@@ -633,7 +633,7 @@ MONITOR
 680
 25
 770
-71
+74
 nombre
 su-nombre
 17
