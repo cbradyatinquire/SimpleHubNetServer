@@ -4,18 +4,18 @@
 Welcome, ${teachername}<br>
 Teacher client for ${modelname}
 
-<p>
+<div>
 <applet id="teach" name="hubnetteacher" 
 	code="org.nlogo.hubnet.client.ClientApplet"
 	codebase="@{'/public/netlogo/teacher/'}"
         archive="@{'/public/netlogo/teacher/HubNet.jar'}"
-        width="707" height="670">
+        width="838" height="783">
         <param name="DefaultModel" value="${modelname}">
          <param name="PortNumber" value="${port}">
         <param name="UserName" value="${teachername}">
         
 </applet>
-</p>
+</div>
 
 
 

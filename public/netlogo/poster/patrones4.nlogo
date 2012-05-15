@@ -1,73 +1,114 @@
+extensions [ url bitmap ]
+
+globals [ index hostname status ]
+
+to enviar
+  let img bitmap:from-view
+  set index index + 1
+  let  im-name (word "patron-de-" tu-nombre "-version-" index ".png")
+  
+  carefully [
+  set status url:post 
+                 (word "http://" hostname ":9000/viewscreen" ) 
+                 (list         ;(list "sshot.title" title) 
+                (list "sshot.scrimage"  im-name  img)
+                (list "aname" (word tu-nombre "-num" index)  ) 
+                )
+          
+  set index index + 1    
+]
+[ user-message "¡UPS: Problema con el servidor!" ]  
+end
 
 
-breed [ students student ]
-
-students-own [ user-id ]
-
-
-to startup
+to startup 
   setup
 end
 
+
+
 to setup
   ca
-  hubnet-reset
-  set running? true  
   reset-ticks
+  set index  0
+  set status " -- "
+  set hostname "abmplus.tech.northwestern.edu"
+   let ind min-pxcor - .5
+   while [ ind <= max-pxcor + .5 ]
+   [
+     crt 1 [  setxy ind 0 set shape "line" set color 2 set size world-height set heading 0 ]
+     set ind ind + 1
+   ]
+   
+   set ind min-pycor - .5
+   while [ ind <= max-pycor + .5 ]
+   [
+     crt 1 [  setxy  0 ind set shape "line" set color 2 set size world-height set heading 90 ]
+     set ind ind + 1
+   ]
+   
+   crt 1 [  set shape "line" set color 9 set size world-height set heading 0 ]
+   crt 1 [   set shape "line" set color 9 set size world-height set heading 90 ]
 end
 
 
-to go
-   listen-clients  
-    every .1 
-    [ 
-       
-        tick
-    ]
-  
-end
 
-to listen-clients
-  while [ hubnet-message-waiting? ]
+to dibujar
+  every .001
   [
-   hubnet-fetch-message 
-   ifelse (hubnet-enter-message?)
-   [
-    create-students 1 [ set user-id hubnet-message-source set shape "circle" set size 3 set label user-id ] 
-   ] 
-   [
-   ifelse (hubnet-exit-message?)
-   [
-    ask students with [ user-id = hubnet-message-source ] [ die ]
-   ]
-   [
-    if ( hubnet-message-tag = "toggle-running?" ) [ set running? not running? ]
-   
-    if (running?)
-      [
-         if ( hubnet-message-tag = "View" ) [ ask students with [ hubnet-message-source = user-id ] [ setxy item 0 hubnet-message item 1 hubnet-message ] ] 
-         if ( hubnet-message-tag = "aslider" ) [ set aslider hubnet-message ]
-         if ( hubnet-message-tag = "change color") [  ask students with [ hubnet-message-source = user-id ] [ set color one-of base-colors ] ]
-      ]
-  
-   ]
-   ]
-   
-    
-  
+  if (mouse-down?)
+  [
+    ask patch mouse-xcor mouse-ycor
+    [
+     ifelse (pcolor = black) 
+     [
+        ifelse (pxcor > 0) 
+        [
+          ifelse (pycor > 0)
+          [
+            set pcolor red
+          ]
+          [
+            set pcolor sky
+          ] 
+        ]
+        [
+          ifelse (pycor > 0)
+          [
+            set pcolor yellow
+          ]
+          [
+            set pcolor green
+          ] 
+        ]
+     ]
+     [
+       set pcolor black
+     ]
+    ]
+    analizar
+    display
+    wait .1
   ]
+  ]
+end
+
+
+to analizar
+  clear-output
+  output-print  (word "PASO \tNUM" "\n 1 \t " count patches with [pcolor = yellow] "\n 2 \t " count patches with [pcolor = red] "\n 3 \t " count patches with [pcolor = green] "\n 4 \t " count patches with [pcolor = sky]) 
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-395
-12
-834
-472
+226
+14
+665
+474
 16
 16
 13.0
 1
-10
+12
 1
 1
 1
@@ -85,55 +126,12 @@ GRAPHICS-WINDOW
 ticks
 30.0
 
-SLIDER
-171
-66
-343
-99
-aslider
-aslider
-0
-100
-46
-1
-1
-NIL
-HORIZONTAL
-
-MONITOR
-172
-112
-343
-189
-NIL
-aslider
-17
-1
-19
-
 BUTTON
-61
-141
-124
-174
-NIL
-go
-T
-1
-T
-OBSERVER
-NIL
-NIL
-NIL
-NIL
-1
-
-BUTTON
-59
-106
-125
-139
-NIL
+21
+16
+177
+49
+borrar todo
 setup
 NIL
 1
@@ -145,16 +143,108 @@ NIL
 NIL
 1
 
-SWITCH
-76
-256
-188
-289
-running?
-running?
-0
+BUTTON
+20
+58
+177
+91
+NIL
+dibujar
+T
 1
--1000
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+OUTPUT
+9
+104
+197
+313
+20
+
+INPUTBOX
+17
+326
+184
+386
+tu-nombre
+sin nombre
+1
+1
+String (reporter)
+
+BUTTON
+18
+390
+183
+423
+compartir / enviar
+enviar
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+TEXTBOX
+238
+46
+274
+64
+Paso 1
+11
+9.0
+1
+
+TEXTBOX
+620
+46
+658
+64
+Paso 2
+11
+9.0
+1
+
+TEXTBOX
+240
+452
+276
+470
+Paso 3
+11
+9.0
+1
+
+TEXTBOX
+620
+454
+658
+472
+Paso 4
+11
+9.0
+1
+
+MONITOR
+17
+426
+186
+471
+NIL
+status
+17
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -478,6 +568,15 @@ Line -7500403 true 40 84 269 221
 Line -7500403 true 40 216 269 79
 Line -7500403 true 84 40 221 269
 
+wolf
+false
+0
+Polygon -7500403 true true 135 285 195 285 270 90 30 90 105 285
+Polygon -7500403 true true 270 90 225 15 180 90
+Polygon -7500403 true true 30 90 75 15 120 90
+Circle -1 true false 183 138 24
+Circle -1 true false 93 138 24
+
 x
 false
 0
@@ -485,47 +584,11 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 5.0
+NetLogo 5.0.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
-VIEW
-218
-10
-647
-439
-0
-0
-0
-1
-1
-1
-1
-1
-0
-1
-1
-1
--16
-16
--16
-16
-
-BUTTON
-65
-73
-177
-106
-change color
-NIL
-NIL
-1
-T
-OBSERVER
-NIL
-NIL
-
 @#$#@#$#@
 default
 0.0

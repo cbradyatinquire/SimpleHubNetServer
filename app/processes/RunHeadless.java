@@ -29,7 +29,7 @@ public class RunHeadless {
 		mySwitch = ss;
 		modelName = mname;
 		portNumber = port;
-	    workspace = HeadlessWorkspace.newInstance( );
+	    workspace = HeadlessWorkspace.newInstance();
 	    
 	    try {
 	      workspace.open(mname);
