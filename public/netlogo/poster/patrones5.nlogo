@@ -25,15 +25,20 @@ end
 
 
 to startup 
+  ca
   setup
+  set index 0
+  set status " -- "
+  set hostname "abmplus.tech.northwestern.edu"
 end
 
 
 
 to setup
-  ca
+  cp 
+  ct
+  clear-output
   reset-ticks
-  set index  0
   set status " -- "
   set hostname "abmplus.tech.northwestern.edu"
    let ind min-pxcor - .5
