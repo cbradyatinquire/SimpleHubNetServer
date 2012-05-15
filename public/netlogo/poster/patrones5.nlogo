@@ -18,7 +18,7 @@ to enviar
                 (list "aname" (word tu-nombre "-num" index)  ) 
                 )
           
-  set index index + 1    
+   
 ]
 [ user-message "¡UPS: Problema con el servidor!" ]  
 end
