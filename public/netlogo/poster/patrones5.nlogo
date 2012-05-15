@@ -227,7 +227,7 @@ INPUTBOX
 184
 386
 tu-nombre
-sin nombre
+cb
 1
 1
 String (reporter)
