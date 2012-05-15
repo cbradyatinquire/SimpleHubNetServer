@@ -94,4 +94,9 @@ public class ImageTransfer extends Controller {
 		render();
 	}
 	
+	public static void patrones()
+	{
+		render();
+	}
+	
 }

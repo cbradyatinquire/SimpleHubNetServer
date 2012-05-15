@@ -17,6 +17,7 @@ GET 	/addaccount								Application.accounts
 POST	/viewscreen								ImageTransfer.addViewScreen
 *		/getimage								ImageTransfer.getImageByTitle
 *		/run									ImageTransfer.activity
+* 		/patrones								ImageTransfer.patrones
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
