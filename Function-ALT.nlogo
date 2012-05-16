@@ -147,6 +147,7 @@ to graph-student-equation
     foreach graphed-equation-list [ graph-equation item 0 ? false item 1 ? ]
   ]
   graph-equation [my-equation] of s true [color] of s
+  display
 end
 
 ;; change the equation submitted by a student
@@ -395,6 +396,7 @@ to clear-last-equation
     ask grid [ set plabel "" ]
     draw-legend
   ]
+  display
 end
 
 ;; set the rule to the value that the user enters in an input dialog

@@ -1507,10 +1507,10 @@ NetLogo 5.0RC7
 @#$#@#$#@
 @#$#@#$#@
 BUTTON
-294
-514
-386
-547
+302
+511
+394
+544
 up
 NIL
 NIL
@@ -1521,10 +1521,10 @@ NIL
 W
 
 BUTTON
-291
-588
-383
-621
+299
+585
+391
+618
 down
 NIL
 NIL
@@ -1535,10 +1535,10 @@ NIL
 S
 
 BUTTON
-337
-551
-429
-584
+345
+548
+437
+581
 right
 NIL
 NIL
@@ -1549,10 +1549,10 @@ NIL
 D
 
 BUTTON
-241
-551
-333
-584
+249
+548
+341
+581
 left
 NIL
 NIL
@@ -1764,6 +1764,20 @@ BUTTON
 727
 349
 .clear-last-equation
+NIL
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+
+BUTTON
+579
+595
+658
+628
+.display
 NIL
 NIL
 1
