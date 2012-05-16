@@ -99,10 +99,9 @@ to go
     [
       ask students 
       [ 
-        send-teacher-info
-;        ifelse (is-teacher = true)
-;        [ send-teacher-info ]
-;        [ send-info-to-clients ]
+        send-info-to-clients 
+        if (is-teacher = true)
+        [ send-teacher-info ]
       ]
     ]
     
@@ -117,7 +116,6 @@ to go
       ]
       [ cd ]
       set old-grid? grid?
-      display
     ]
     if old-legend? != reveal-legend?
     [
@@ -125,9 +123,8 @@ to go
       if reveal-legend?
         [ draw-legend ]
       set old-legend? reveal-legend?
-      display
     ]
-    ;display
+    display
   ]
 end
 
@@ -645,7 +642,7 @@ to listen-clients
          ;show (word "tag is:" hubnet-message-tag ", and message is:"  hubnet-message )
          run (word "set " (butfirst hubnet-message-tag) " " hubnet-message )
          ask students with  [user-id = hubnet-message-source] [ set is-teacher true ]
-         ;display
+         display
         ]
         [
           ifelse ("." = first hubnet-message-tag)
@@ -653,15 +650,11 @@ to listen-clients
             ;show (word "tag is:" hubnet-message-tag ", and message is:"  hubnet-message )
             run (butfirst hubnet-message-tag)
             ask students with  [user-id = hubnet-message-source] [ set is-teacher true ]
-            ;display
+            display
           ]
           [
             if (listen?)
-            [ 
-              execute-command hubnet-message-tag
-              ask students with  [user-id = hubnet-message-source] [send-info-to-clients] 
-              display
-            ]
+            [ execute-command hubnet-message-tag ]
           ]
         ]
       ]
@@ -681,11 +674,12 @@ to send-info-to-clients ;; turtle procedure
 end
 
 to send-teacher-info
-  if ( current-student-name != nobody and is-teacher = true) 
+  if ( current-student-name != nobody ) 
   [ hubnet-send user-id "student-name" current-student-name ]
   hubnet-send user-id "student-equation" current-student-equation
   if (linear-regression?)
   [ hubnet-send user-id "regression equation" (word "y=" precision slope 3 "x+" precision y-intercept 3) ]
+  
 end
 
 to create-new-student
@@ -1560,7 +1554,7 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 5.0.1
+NetLogo 5.0RC7
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
