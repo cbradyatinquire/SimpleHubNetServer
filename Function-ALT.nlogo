@@ -688,7 +688,11 @@ to send-teacher-info
   [ hubnet-send user-id "student-name" current-student-name ]
   hubnet-send user-id "student-equation" current-student-equation
   if (linear-regression?)
+  [
+    ifelse ( slope = "Undefined" or y-intercept = "Undefined" )
+   [ hubnet-send user-id "regression equation" "vertical" ]
   [ hubnet-send user-id "regression equation" (word "y=" precision slope 3 "x+" precision y-intercept 3) ]
+  ]
 end
 
 to create-new-student
