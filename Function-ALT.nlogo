@@ -75,6 +75,7 @@ to startup
 end
 
 to setup
+  reset-ticks
   clear-equations
   setup-grid
   set available-shapes all-shapes
@@ -353,7 +354,7 @@ to graph-equation [full-phrase add-to-list? current-color ]
   [
     ;; if no points were plotted show the user the message so
     ;; s/he can fix the problem.
-    user-message my-message
+    ;user-message my-message
   ]
 end
 
@@ -633,10 +634,10 @@ to listen-clients
     set something-changed true
     hubnet-fetch-message
     ifelse hubnet-enter-message?
-    [ create-new-student ]
+    [ create-new-student  display]
     [
       ifelse hubnet-exit-message?
-      [ remove-student ]
+      [ remove-student  display]
       
       [
         ifelse ("*" = first hubnet-message-tag)
@@ -1560,7 +1561,7 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 5.0.1
+NetLogo 5.0RC7
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
