@@ -55,7 +55,28 @@ public class Application extends Controller {
         render(models);
     }
     
+    public static void webinario() {
+    	render();
+    }
+    
     public static void student() {
+    	//get the teachers from the database and determine which have active sessions
+    	List<Teacher> teachers = Teacher.findAll();
+    	ArrayList<String>activeteachers = new ArrayList<String>();
+    	ArrayList<String>inactiveteachers = new ArrayList<String>();
+    	
+    	for (Teacher t : teachers)
+    	{
+    		if ( teacherToPort.containsKey(t.username) )
+    			activeteachers.add( t.username );
+    		else
+    			inactiveteachers.add(t.username);
+    	}
+    	
+    	render(activeteachers, inactiveteachers );
+    }
+    
+    public static void alumno() {
     	//get the teachers from the database and determine which have active sessions
     	List<Teacher> teachers = Teacher.findAll();
     	ArrayList<String>activeteachers = new ArrayList<String>();
@@ -230,6 +251,18 @@ public class Application extends Controller {
     	if(validation.hasErrors()) {
             flash.error("ERROR: Please indicate both Username and Teacher");
             student();
+        }
+    	
+    	Integer port = teacherToPort.get(teachername);
+    	String model = portToModelName.get(port);
+    	studentclient( studentname, teachername, model, port.toString());
+    }
+    
+    public static void alumnoLogin( @Required String studentname,  @Required String teachername)
+    {
+    	if(validation.hasErrors()) {
+            flash.error("ERROR: Favor de indicar nombre usuario Y nombre del profesor");
+            alumno();
         }
     	
     	Integer port = teacherToPort.get(teachername);

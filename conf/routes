@@ -7,6 +7,8 @@ GET     /                                       Application.index
 
 GET 	/teacher								Application.teacher
 GET		/student								Application.student
+GET		/alumno									Application.alumno
+GET		/webinario								Application.webinario
 
 GET 	/shutdown								Application.shutdown
 GET 	/addaccount								Application.accounts

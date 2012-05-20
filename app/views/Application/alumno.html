@@ -1,0 +1,40 @@
+#{extends 'main.html' /}
+#{set title:'Acceso para Alumnos' /}
+
+#{if flash.error}
+    <p style="color:#c00">
+        ${flash.error}
+    </p>
+#{/if}
+
+
+
+
+<h1>Para ingresar: </h1>
+
+
+<form action="@{Application.alumnoLogin()}" method="POST">
+    <p>
+    <b>Nombre de Usuario:</b><br><input type="text" name="studentname" /> <br>
+  </p><p>
+    <b>Maestro de la Clase: </b><br>
+    #{list items:activeteachers, as:'ateacher'}
+    <input type="radio" name="teachername" value='${ateacher}'/> ${ateacher}<br>
+    #{/list}
+    </p><p>
+    <input type="submit" value="Ingresar" />
+    </p>
+</form>
+<br>
+
+
+<h3>OJO:  Si el nombre del maestro no aparece, no han inciado la actividad.  <br>
+Espera hasta que tu maestro inicie la actividad y refrezca esta pagina....</h3>
+<h4>
+Maestros sin sesiones iniciadas:
+<ul>
+ #{list items:inactiveteachers, as:'iteacher'}
+    <li>${iteacher}</li>
+    #{/list}
+</ul>
+</h4>

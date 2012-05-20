@@ -1,0 +1,23 @@
+#{extends 'main.html' /}
+#{set title:'Enlaces:  Aula Interactiva' /}
+
+#{if flash.error}
+    <p style="color:#c00">
+        ${flash.error}
+    </p>
+#{/if}
+
+<h2>Webinario:  Aula Interactiva</h2>
+
+<p>
+<b>Enlaces que vamos a utilizar...</b>
+</p>
+
+<ul>
+<li>Primera actividad: <a href="/alumno">Actividad de Puntos</a><br>
+<br>
+<li>Segunda actividad: <a href="/patrones">Actividad de Patrones</a><br>
+<br>
+<br>
+<li>Y, Tercera...<a href="/capturas">Capturas de la Clase</a><br>
+</ul>
