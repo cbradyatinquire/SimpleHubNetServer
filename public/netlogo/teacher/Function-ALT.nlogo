@@ -1640,10 +1640,10 @@ VIEW
 70
 
 SWITCH
-620
-103
-723
-136
+621
+53
+724
+86
 *listen?
 *listen?
 0
@@ -1651,10 +1651,10 @@ SWITCH
 -1000
 
 BUTTON
-676
-185
-803
-218
+667
+141
+794
+174
 .right-direction
 NIL
 NIL
@@ -1665,10 +1665,10 @@ NIL
 NIL
 
 BUTTON
-451
-185
-568
-218
+442
+141
+559
+174
 .left-direction
 NIL
 NIL
@@ -1679,30 +1679,30 @@ NIL
 NIL
 
 MONITOR
-571
-173
-673
-222
+562
+129
+664
+178
 student-name
 NIL
 3
 1
 
 MONITOR
-503
-225
-727
-274
+494
+181
+718
+230
 student-equation
 NIL
 3
 1
 
 BUTTON
-504
-277
-728
-310
+495
+233
+719
+266
 .graph-student-equation
 NIL
 NIL
@@ -1713,10 +1713,10 @@ NIL
 NIL
 
 SWITCH
-540
-467
-717
-500
+528
+424
+705
+457
 *linear-regression?
 *linear-regression?
 1
@@ -1724,10 +1724,10 @@ SWITCH
 -1000
 
 BUTTON
-516
-102
-588
-139
+517
+52
+589
+89
 .setup
 NIL
 NIL
@@ -1738,20 +1738,20 @@ NIL
 NIL
 
 MONITOR
-542
-516
-712
-565
+530
+473
+700
+522
 regression equation
 NIL
 3
 1
 
 INPUTBOX
-493
-376
-728
-436
+484
+332
+719
+392
 *rule
 \"El valor de x es positivo\"
 1
@@ -1759,10 +1759,10 @@ INPUTBOX
 String (reporter)
 
 BUTTON
-505
-316
-727
-349
+496
+272
+718
+305
 .clear-last-equation
 NIL
 NIL
@@ -1773,11 +1773,54 @@ NIL
 NIL
 
 BUTTON
-579
-595
-658
-628
+576
+552
+655
+585
 .display
+NIL
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+
+SLIDER
+108
+512
+240
+545
+Step-Size
+Step-Size
+0.25
+1
+1
+0.25
+1
+NIL
+HORIZONTAL
+
+BUTTON
+521
+592
+711
+625
+.ask students [ set size 6 ]
+NIL
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+
+BUTTON
+522
+629
+712
+662
+.ask students [ set size 9 ]
 NIL
 NIL
 1

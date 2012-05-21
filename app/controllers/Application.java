@@ -269,6 +269,11 @@ public class Application extends Controller {
     	String model = portToModelName.get(port);
     	studentclient( studentname, teachername, model, port.toString());
     }
-    
+    /*
+     * #{set title:'Student Client' /}
+Student client for ${model}<br>
+Welcome, ${studentname}<br>
+You are in ${teachername}'s class, working on port ${port}.
+     */
     
 }

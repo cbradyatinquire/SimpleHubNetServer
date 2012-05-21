@@ -662,7 +662,7 @@ to listen-clients
             if (listen?)
             [ 
               execute-command hubnet-message-tag
-              ask students with  [user-id = hubnet-message-source] [send-info-to-clients] 
+              ;ask students with  [user-id = hubnet-message-source] [send-info-to-clients] 
               display
             ]
           ]
@@ -1734,6 +1734,21 @@ regression equation
 NIL
 3
 1
+
+SLIDER
+109
+507
+242
+540
+Step-Size
+Step-Size
+0.25
+1
+1
+0.25
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 default
