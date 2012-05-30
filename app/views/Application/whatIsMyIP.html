@@ -1,0 +1,15 @@
+#{extends 'main.html' /}
+#{set title:'What Is My IP' /}
+
+#{if flash.error}
+    <p style="color:#c00">
+        ${flash.error}
+    </p>
+#{/if}
+
+
+
+<h2>
+Your IP address is:<br>
+${addr}
+</h2>

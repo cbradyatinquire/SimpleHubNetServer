@@ -10,6 +10,8 @@ GET		/student								Application.student
 GET		/alumno									Application.alumno
 GET		/webinario								Application.webinario
 
+GET		/myIP									Application.whatIsMyIP
+
 GET 	/shutdown								Application.shutdown
 GET 	/addaccount								Application.accounts
 

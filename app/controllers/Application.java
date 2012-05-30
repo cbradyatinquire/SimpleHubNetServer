@@ -170,6 +170,12 @@ public class Application extends Controller {
 		}
     }
     
+    public static void whatIsMyIP() 
+    {
+    	String addr = Http.Request.current().remoteAddress;
+    	render(addr);
+    }
+    
     private static ArrayList<String> getActiveTeachers()
     {
     	ArrayList<String> activeteachers = new ArrayList<String>();
