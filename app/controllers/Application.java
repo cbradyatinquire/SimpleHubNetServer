@@ -172,8 +172,9 @@ public class Application extends Controller {
     
     public static void whatIsMyIP() 
     {
-    	String addr = Http.Request.current().remoteAddress;
-    	render(addr);
+    	String clientip = Http.Request.current().remoteAddress;
+    	String hostip = Http.Request.current().host;
+    	render(clientip, hostip);
     }
     
     private static ArrayList<String> getActiveTeachers()
