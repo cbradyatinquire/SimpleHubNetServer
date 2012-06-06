@@ -1,0 +1,51 @@
+#{extends 'main.html' /}
+#{set title:'Find My IP Address' /}
+
+
+<div>
+<applet id="addr" name="addr" 
+	code="ipapplet.AddressApplet"
+	codebase="@{'/public/ip/'}"
+        archive="@{'/public/ip/address.jar'}"
+        width="400" height="200">
+</applet>
+</div>
+
+
+<div id="results" name="results">
+</div>
+
+
+<script type="text/javascript">
+
+var ipa="notyet";
+
+var getAddr = function() {
+document.addr.writeAddressTo("ipa");
+}
+
+
+
+var fillin = function(){
+getAddr();
+alert(ipa);
+}
+</script>
+
+
+<br>
+<a id="fillthediv" href="#">Check if Applet Pushed the value on init</a>
+<br>
+<br>
+if not, press....
+<input type="button" name="fillin" value="Grab and Show" id="fillin" onclick="fillin();" />
+
+
+
+<script type="text/javascript" charset="utf-8">
+
+$('#fillthediv').live('click', function() { 
+	$('#results').prepend('<B>GOT: </B>'+ipa+'<br>')
+})
+
+</script>
